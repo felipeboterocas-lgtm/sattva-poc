@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sattva Partners · Perfil de Liderazgo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#1a1a2e;--ink-soft:#2d2d4e;
+    --gold:#c9a84c;--gold-light:#e8d5a3;
+    --sage:#7a9e7e;--sage-light:#b8d4bb;
+    --cream:#f7f3ed;--cream-deep:#ede7dc;
+    --muted:#8888a0;
+    --disc-d:#e05252;--disc-i:#f0a030;--disc-s:#52a0e0;--disc-c:#7a52e0;
+  }
+  body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--cream);min-height:100vh;overflow-x:hidden}
+  .screen{display:none;min-height:100vh;flex-direction:column}
+  .screen.active{display:flex}
+
+  /* S1 LANDING */
+  #s1{align-items:center;justify-content:center;padding:40px 24px;position:relative;overflow:hidden}
+  #s1::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+  #s1::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(122,158,126,.07) 0%,transparent 70%);bottom:-50px;left:-50px;pointer-events:none}
+  .s1-inner{max-width:540px;width:100%;text-align:center;position:relative;z-index:1}
+  .logo-area{margin-bottom:48px}
+  .logo-symbol{width:56px;height:56px;border:1.5px solid var(--gold);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative}
+  .logo-symbol::before{content:'';width:36px;height:36px;border:1px solid rgba(201,168,76,.4);border-radius:50%;position:absolute}
+  .logo-symbol svg{width:24px;height:24px}
+  .logo-name{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-light)}
+  .hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:12px}
+  .hero-title em{font-style:italic;color:var(--gold-light)}
+  .hero-sub{font-size:15px;font-weight:300;color:var(--muted);line-height:1.6;margin-bottom:40px;max-width:420px;margin-left:auto;margin-right:auto}
+  .value-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+  .pill{font-size:11px;color:var(--sage-light);border:1px solid rgba(122,158,126,.3);padding:5px 14px;border-radius:20px;letter-spacing:.05em}
+  .cta-btn{background:var(--gold);color:var(--ink);border:none;padding:16px 40px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .2s}
+  .cta-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+  .time-note{font-size:11px;color:var(--muted);margin-top:14px}
+
+  /* S2 CONSENTIMIENTO */
+  #s2{align-items:center;justify-content:center;padding:40px 24px}
+  .consent-card{max-width:520px;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:48px 40px}
+  .step-label{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+  .card-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--cream);margin-bottom:20px;line-height:1.2}
+  .consent-text{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+  .consent-text strong{color:var(--cream-deep);font-weight:500}
+  .consent-check{display:flex;gap:12px;align-items:flex-start;padding:16px;background:rgba(122,158,126,.08);border:1px solid rgba(122,158,126,.2);border-radius:4px;margin-bottom:28px;cursor:pointer}
+  .consent-check input[type=checkbox]{width:18px;height:18px;margin-top:1px;accent-color:var(--sage);cursor:pointer;flex-shrink:0}
+  .consent-check label{font-size:13px;color:var(--cream-deep);line-height:1.5;cursor:pointer}
+  .input-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
+  .linkedin-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:14px 16px;font-family:'Inter',sans-serif;font-size:14px;color:var(--cream);outline:none;transition:border-color .2s;margin-bottom:24px}
+  .linkedin-input:focus{border-color:var(--gold)}
+  .linkedin-input::placeholder{color:var(--muted);font-size:13px}
+  .btn-full{width:100%;background:var(--gold);color:var(--ink);border:none;padding:16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .2s}
+  .btn-full:hover{background:var(--gold-light)}
+  .btn-full:disabled{opacity:.4;cursor:not-allowed}
+  .error-msg{color:#e05252;font-size:12px;margin-top:12px;text-align:center;display:none}
+  .back-link{font-size:12px;color:var(--muted);cursor:pointer;margin-top:20px;text-align:center;text-decoration:underline;display:block}
+  .back-link:hover{color:var(--cream)}
+
+  /* S3 LOADING */
+  #s3{align-items:center;justify-content:center;padding:40px 24px}
+  .loading-inner{max-width:400px;width:100%;text-align:center}
+  .mandala{width:100px;height:100px;margin:0 auto 36px;position:relative}
+  .mandala-ring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%)}
+  .r1{width:100px;height:100px;border-color:rgba(201,168,76,.6);animation:spin 8s linear infinite}
+  .r2{width:72px;height:72px;border-color:rgba(122,158,126,.5);animation:spin 5s linear infinite reverse}
+  .r3{width:44px;height:44px;border-color:rgba(201,168,76,.4);animation:spin 3s linear infinite}
+  .r4{width:18px;height:18px;background:var(--gold);border-color:var(--gold);animation:pulse 2s ease-in-out infinite}
+  @keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes pulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.3)}}
+  .loading-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--cream);margin-bottom:12px}
+  .loading-step{font-size:13px;color:var(--muted);min-height:22px}
+  .progress-bar{width:200px;height:2px;background:rgba(255,255,255,.1);margin:28px auto 0;border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--gold));border-radius:2px;width:0%;transition:width .5s ease}
+
+  /* S4 RESULTADO */
+  #s4{padding:40px 24px 60px;align-items:center}
+  .result-inner{max-width:600px;width:100%}
+  .result-header{text-align:center;margin-bottom:40px}
+  .result-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+  .result-name{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--cream);margin-bottom:4px}
+  .result-type{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--gold-light)}
+  .disc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:28px;margin-bottom:20px}
+  .disc-card-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .disc-bars{display:flex;flex-direction:column;gap:14px}
+  .disc-row{display:flex;align-items:center;gap:14px}
+  .disc-letter{width:28px;font-size:13px;font-weight:600;text-align:center;flex-shrink:0}
+  .disc-track{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+  .disc-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0%}
+  .disc-pct{font-size:12px;color:var(--muted);width:36px;text-align:right;flex-shrink:0}
+  .disc-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.08em;margin-top:16px}
+  .insight-section{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px;margin-bottom:16px}
+  .insight-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .insight-text{font-size:14px;color:var(--cream-deep);line-height:1.7;font-weight:300}
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .tag{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);color:var(--muted)}
+  .delta-box{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(122,158,126,.08));border:1px solid rgba(201,168,76,.25);border-radius:4px;padding:28px;margin-bottom:20px;text-align:center}
+  .delta-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold-light);margin-bottom:10px}
+  .delta-text{font-size:13px;color:var(--muted);line-height:1.6;max-width:440px;margin:0 auto 20px}
+  .btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold);padding:14px 32px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .2s}
+  .btn-outline:hover{background:var(--gold);color:var(--ink)}
+  .aiko-box{background:rgba(122,158,126,.08);border:1px solid rgba(122,158,126,.25);border-radius:4px;padding:24px;display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+  .aiko-avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--sage),var(--ink-soft));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .aiko-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
+  .aiko-msg{font-size:13px;color:var(--cream-deep);line-height:1.6;font-weight:300}
+  .btn-sage{margin-top:14px;background:var(--sage);color:var(--ink);border:none;padding:10px 24px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .2s;display:inline-block}
+  .btn-sage:hover{background:var(--sage-light)}
+  .btn-restart{display:block;margin:24px auto 0;background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.1);padding:10px 24px;font-family:'Inter',sans-serif;font-size:12px;border-radius:2px;cursor:pointer;transition:all .2s}
+  .btn-restart:hover{color:var(--cream);border-color:rgba(255,255,255,.3)}
+  .disclaimer{font-size:11px;color:rgba(136,136,160,.6);line-height:1.5;text-align:center;margin-top:28px;padding:0 16px}
+  @media(max-width:480px){.hero-title{font-size:32px}.consent-card{padding:32px 24px}.result-name{font-size:28px}}
+</style>
+</head>
+<body>
+
+<!-- S1 LANDING -->
+<div id="s1" class="screen active">
+  <div class="s1-inner">
+    <div class="logo-area">
+      <div class="logo-symbol">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="#c9a84c"/>
+        </svg>
+      </div>
+      <div class="logo-name">Sattva Partners</div>
+    </div>
+    <div class="hero-eyebrow">Inteligencia de Liderazgo · IA</div>
+    <h1 class="hero-title">Descubre tu <em>perfil natural</em> de liderazgo</h1>
+    <p class="hero-sub">Analizamos tu huella digital profesional con IA para revelarte cómo lideras, comunicas y decides — antes de que completes cualquier test formal.</p>
+    <div class="value-pills">
+      <span class="pill">DISC Predictivo</span>
+      <span class="pill">Enneagrama</span>
+      <span class="pill">Estilos de comunicación</span>
+      <span class="pill">3 minutos</span>
+    </div>
+    <button class="cta-btn" onclick="go(2)">Comenzar mi análisis</button>
+    <p class="time-note">Gratis · Sin registro · Resultado inmediato</p>
+  </div>
+</div>
+
+<!-- S2 CONSENTIMIENTO -->
+<div id="s2" class="screen">
+  <div class="consent-card">
+    <div class="step-label">Paso 1 de 2 · Autorización</div>
+    <h2 class="card-title">Tu privacidad, primero</h2>
+    <p class="consent-text">
+      Analizamos únicamente <strong>información pública</strong> de tu perfil de LinkedIn: titular profesional, resumen y experiencia. No almacenamos tu información ni la compartimos con terceros.<br><br>
+      El resultado es tuyo. Si decides completar la evaluación formal con Crystal Knows, tú controlas qué comparte con tu empresa.
+    </p>
+    <div class="consent-check" onclick="toggleCheck()">
+      <input type="checkbox" id="consent-cb"/>
+      <label for="consent-cb">Acepto compartir mi perfil público de LinkedIn para generar mi análisis de liderazgo. Entiendo que mis datos se usan únicamente para este propósito y no se almacenan permanentemente. <strong>(Ley 1581 · Habeas Data Colombia)</strong></label>
+    </div>
+    <label class="input-label" for="li-url">URL de tu perfil LinkedIn</label>
+    <input class="linkedin-input" id="li-url" type="text" placeholder="https://linkedin.com/in/tu-nombre" oninput="updateBtn()"/>
+    <button class="btn-full" id="analyze-btn" onclick="startAnalysis()" disabled>Generar mi perfil de liderazgo</button>
+    <div class="error-msg" id="err-msg">Ocurrió un error. Verifica tu conexión e intenta de nuevo.</div>
+    <span class="back-link" onclick="go(1)">← Volver</span>
+  </div>
+</div>
+
+<!-- S3 LOADING -->
+<div id="s3" class="screen">
+  <div class="loading-inner">
+    <div class="mandala">
+      <div class="mandala-ring r1"></div>
+      <div class="mandala-ring r2"></div>
+      <div class="mandala-ring r3"></div>
+      <div class="mandala-ring r4"></div>
+    </div>
+    <h2 class="loading-title">Leyendo tu huella de liderazgo</h2>
+    <p class="loading-step" id="load-step">Iniciando análisis...</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+  </div>
+</div>
+
+<!-- S4 RESULTADO -->
+<div id="s4" class="screen">
+  <div class="result-inner">
+    <div class="result-header">
+      <div class="result-eyebrow">Perfil predictivo de liderazgo · IA</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-type" id="res-archetype">—</div>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-card-title">Modelo DISC · Intensidad predictiva</div>
+      <div class="disc-bars">
+        <div class="disc-row">
+          <span class="disc-letter" style="color:var(--disc-d)">D</span>
+          <div class="disc-track"><div class="disc-fill" id="bar-d" style="background:var(--disc-d)"></div></div>
+          <span class="disc-pct" id="pct-d">—</span>
+        </div>
+        <div class="disc-row">
+          <span class="disc-letter" style="color:var(--disc-i)">I</span>
+          <div class="disc-track"><div class="disc-fill" id="bar-i" style="background:var(--disc-i)"></div></div>
+          <span class="disc-pct" id="pct-i">—</span>
+        </div>
+        <div class="disc-row">
+          <span class="disc-letter" style="color:var(--disc-s)">S</span>
+          <div class="disc-track"><div class="disc-fill" id="bar-s" style="background:var(--disc-s)"></div></div>
+          <span class="disc-pct" id="pct-s">—</span>
+        </div>
+        <div class="disc-row">
+          <span class="disc-letter" style="color:var(--disc-c)">C</span>
+          <div class="disc-track"><div class="disc-fill" id="bar-c" style="background:var(--disc-c)"></div></div>
+          <span class="disc-pct" id="pct-c">—</span>
+        </div>
+      </div>
+      <div id="disc-badge" class="disc-badge"></div>
+    </div>
+
+    <div class="insight-section">
+      <div class="insight-label">Cómo lideras</div>
+      <div class="insight-text" id="ins-lead">—</div>
+    </div>
+    <div class="insight-section">
+      <div class="insight-label">Cómo comunicas</div>
+      <div class="insight-text" id="ins-comm">—</div>
+      <div class="tag-row" id="ins-tags"></div>
+    </div>
+    <div class="insight-section">
+      <div class="insight-label">Zona de tensión · Punto ciego</div>
+      <div class="insight-text" id="ins-tension">—</div>
+    </div>
+    <div class="insight-section">
+      <div class="insight-label">Enneagrama sugerido</div>
+      <div class="insight-text" id="ins-ennea">—</div>
+    </div>
+
+    <div class="delta-box">
+      <div class="delta-title">¿Cómo te ves tú vs. cómo te perciben los demás?</div>
+      <p class="delta-text">Este es tu perfil <em>predicho</em> por IA. El análisis completo cruza este resultado con tu auto-evaluación para revelar el delta — la brecha entre tu identidad percibida y tu identidad real de liderazgo.</p>
+      <button class="btn-outline" onclick="alert('Próximamente: link personalizado al test Crystal Knows')">
+        Completar mi evaluación formal →
+      </button>
+    </div>
+
+    <div class="aiko-box">
+      <div class="aiko-avatar">🌿</div>
+      <div class="aiko-content">
+        <div class="aiko-label">Aiko · Agente de Liderazgo Consciente · Sattva</div>
+        <p class="aiko-msg" id="aiko-msg">Hola. He revisado tu perfil y hay algo interesante sobre tu estilo de liderazgo que vale la pena explorar juntos.</p>
+        <button class="btn-sage" onclick="alert('Próximamente: conversación con Aiko')">Hablar con Aiko</button>
+      </div>
+    </div>
+
+    <button class="btn-restart" onclick="restart()">← Analizar otro perfil</button>
+
+    <p class="disclaimer">
+      Este análisis es predictivo, no clínico. Generado por IA a partir de información pública con fines de autoconocimiento y desarrollo de liderazgo. Para un proceso de salud mental organizacional, un profesional certificado de Sattva Partners te acompañará en el siguiente paso.
+    </p>
+  </div>
+</div>
+
+<script>
+  // ── Navegación
+  function go(n){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('s'+n).classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function restart(){
+    document.getElementById('li-url').value='';
+    document.getElementById('consent-cb').checked=false;
+    document.getElementById('analyze-btn').disabled=true;
+    document.getElementById('err-msg').style.display='none';
+    go(1);
+  }
+
+  // ── Consentimiento
+  function toggleCheck(){
+    const cb=document.getElementById('consent-cb');
+    cb.checked=!cb.checked;
+    updateBtn();
+  }
+  function updateBtn(){
+    const cb=document.getElementById('consent-cb').checked;
+    const url=document.getElementById('li-url').value.trim().length>5;
+    document.getElementById('analyze-btn').disabled=!(cb&&url);
+  }
+
+  // ── Loading steps
+  const loadSteps=[
+    "Leyendo tu perfil público de LinkedIn...",
+    "Extrayendo señales de liderazgo y comunicación...",
+    "Aplicando modelo DISC predictivo con IA...",
+    "Cruzando con patrones de Enneagrama...",
+    "Construyendo tu perfil de liderazgo..."
+  ];
+
+  // ── Análisis principal
+  function startAnalysis(){
+    const url=document.getElementById('li-url').value.trim();
+    document.getElementById('err-msg').style.display='none';
+    go(3);
+
+    let step=0, prog=0;
+    const stepEl=document.getElementById('load-step');
+    const progEl=document.getElementById('prog');
+    const iv=setInterval(()=>{
+      if(step<loadSteps.length){
+        stepEl.textContent=loadSteps[step];
+        prog=Math.min(prog+18,88);
+        progEl.style.width=prog+'%';
+        step++;
+      }
+    },700);
+
+    fetch('/api/analyze',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({linkedinUrl:url})
+    })
+    .then(r=>r.json())
+    .then(result=>{
+      clearInterval(iv);
+      progEl.style.width='100%';
+      stepEl.textContent='¡Perfil generado!';
+      setTimeout(()=>{
+        renderResult(result);
+        go(4);
+        setTimeout(()=>animateBars(result.disc),300);
+      },600);
+    })
+    .catch(()=>{
+      clearInterval(iv);
+      go(2);
+      document.getElementById('err-msg').style.display='block';
+    });
+  }
+
+  // ── Render resultado
+  function renderResult(r){
+    document.getElementById('res-name').textContent=r.nombre||'Tu perfil';
+    document.getElementById('res-archetype').textContent=r.archetype||'';
+    document.getElementById('ins-lead').textContent=r.como_lidera||'';
+    document.getElementById('ins-comm').textContent=r.como_comunica||'';
+    document.getElementById('ins-tension').textContent=r.zona_tension||'';
+    document.getElementById('ins-ennea').textContent=r.enneagrama||'';
+    document.getElementById('aiko-msg').textContent=r.mensaje_aiko||'';
+
+    // Tags
+    const tagRow=document.getElementById('ins-tags');
+    tagRow.innerHTML='';
+    (r.tags_comunicacion||[]).forEach(t=>{
+      const s=document.createElement('span');
+      s.className='tag';s.textContent=t;
+      tagRow.appendChild(s);
+    });
+
+    // Badge DISC dominante
+    const colors={D:'var(--disc-d)',I:'var(--disc-i)',S:'var(--disc-s)',C:'var(--disc-c)'};
+    const labels={D:'Dominante',I:'Influyente',S:'Estable',C:'Concienzudo'};
+    const dom=r.dominante||'D';
+    const badge=document.getElementById('disc-badge');
+    badge.textContent=`Perfil predominante: ${dom} · ${labels[dom]||''}`;
+    badge.style.cssText=`background:${colors[dom]}22;color:${colors[dom]};border:1px solid ${colors[dom]}44;display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.08em;margin-top:16px`;
+
+    window._disc=r.disc;
+  }
+
+  // ── Barras animadas
+  function animateBars(disc){
+    if(!disc) return;
+    ['d','i','s','c'].forEach(k=>{
+      document.getElementById('bar-'+k).style.width=(disc[k]||0)+'%';
+      document.getElementById('pct-'+k).textContent=(disc[k]||0)+'%';
+    });
+  }
+</script>
+</body>
+</html>
