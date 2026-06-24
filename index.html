@@ -244,7 +244,7 @@
       <div class="aiko-content">
         <div class="aiko-label">Aiko · Agente de Liderazgo Consciente · Sattva</div>
         <p class="aiko-msg" id="aiko-msg">Hola. He revisado tu perfil y hay algo interesante sobre tu estilo de liderazgo que vale la pena explorar juntos.</p>
-        <button class="btn-sage" onclick="alert('Próximamente: conversación con Aiko')">Hablar con Aiko</button>
+        <button class="btn-sage" onclick="openAiko()">Hablar con Aiko</button>
       </div>
     </div>
 
@@ -374,3 +374,12 @@
 </script>
 </body>
 </html>
+<script>
+  // Abrir sattvapartners.com con Aiko activado automáticamente
+  function openAiko() {
+    const nombre = document.getElementById('res-name').textContent || '';
+    const archetype = document.getElementById('res-archetype').textContent || '';
+    const params = new URLSearchParams({ aiko: 'open', nombre: nombre, perfil: archetype });
+    window.open('https://sattvapartners.com/?' + params.toString(), '_blank');
+  }
+</script>
